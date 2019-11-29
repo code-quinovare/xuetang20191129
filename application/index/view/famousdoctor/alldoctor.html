@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>所有名医</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <style>
+        body{
+            background-color: #F1F1F1;
+        }
+        .title {
+            margin: 20px 15px 10px;
+            color: #6d6d72;
+            font-size: 15px;
+        }
+        .mui-media{
+            width: 96%;
+            background-color: #F1F1F1;
+        }
+        .mui-pull-left{
+            border-radius: 4px;
+        }
+        .mui-table-view-cell:after {            /*li边框*/
+            background-color: #989898;
+        }
+        .mui-table-view:after {
+            background-color: #989898;
+        }
+    </style>
+</head>
+<body>
+<div class="mui-content">
+    <ul class="mui-table-view" style="margin: 0;background: none;">
+        {if !empty($doctors)}
+        {foreach $doctors as $value}
+        <li class="mui-table-view-cell mui-media">
+            <a href="/index/FamousDoctor/doctorContent?doctor_id={$value.id}">
+                <img class="mui-pull-left" src="{$value.img}" width="100" height="100">
+                <div class="mui-media-body">
+                    <p class='mui-ellipsis'>&nbsp;</p>
+                    <span>&nbsp;</span>{$value.name}
+                    <p class='mui-ellipsis'>&nbsp;</p>
+                    <p class='mui-ellipsis'><span>&nbsp;</span><?php if(strlen($value['int'])>39){
+                        echo substr($value['int'],0,39) . '...';
+                        } else{
+                        echo $value['int'];
+                        }
+                        ?></p>
+                </div>
+            </a>
+        </li>
+        {/foreach}
+        {/if}
+    </ul>
+</div>
+</body>
+<script src="/index/js/mui.min.js"></script>
+<script>
+    mui.init({
+        swipeBack:true //启用右滑关闭功能
+    });
+</script>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注射控糖</title>
+    <?php
+     require_once "jssdk.php";
+     $jssdk = new JSSDK("appid","wx4551d99c128182f4");
+     $signPackage = $jssdk->GetSignPackage();
+    $data = array(
+    'appId' => $signPackage["appId"],
+    'nonceStr' => $signPackage["nonceStr"],
+    'timestamp' => $signPackage["timestamp"],
+    'signature' => $signPackage["signature"]);
+    ?>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        var url=url=(window.location.href).split('#')[0];
+        wx.config({
+            debug:false,
+            appId: '<?php echo $data["appId"];?>',
+            timestamp: '<?php echo $data["timestamp"];?>',
+            nonceStr: '<?php echo $data["nonceStr"];?>',
+            signature: '<?php echo $data["signature"];?>',
+            url:url,
+            jsApiList: [
+                "onMenuShareTimeline", //分享给好友
+                "onMenuShareAppMessage", //分享到朋友圈
+                "onMenuShareQQ",  //分享到QQ
+                "onMenuShareWeibo" //分享到微博
+            ]
+        });
+        wx.ready(function (){
+            var shareData = {
+                title: '注射控糖',
+                desc: '专业糖尿病知识和注射控糖交流平台',
+                link: url,
+                imgUrl: 'http://xt.quinnovare.cn/index/images/logo_xt.jpg'}; //最好是300x300以上的正方形
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <!-- Swiper JS -->
+    <style type="text/css">
+        html{overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+        html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+        body {font: 400 14px/1.5 "微软雅黑",Helvetica,STHeiti,Droid Sans Fallback;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+        input,select,textarea{font-size:100%}
+        article,aside,footer,header,nav,section,audio,canvas,video,img {display: block;}
+        table{border-collapse:collapse;border-spacing:0}
+        fieldset,img{border:0}
+        abbr,acronym{border:0;font-variant:normal}
+        del{text-decoration:line-through}
+        address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal}
+        ol,ul{list-style:none}
+        caption,th{text-align:left}
+        h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+        q:before,q:after{content:''}
+        button{outline:0;border:none;}
+        a:hover{text-decoration:none}
+        ins,a{text-decoration:none}
+        textarea {resize: none;}
+        iframe,img {border:0;}
+        img{display:block;width:100%;}
+        ul,ol {list-style:none;}
+        input,select,textarea {outline: 0;-webkit-user-modify: read-write-plaintext-only;}
+        input {-webkit-appearance: none;}
+        ul li{float: left;display:inline-block;width:96%;margin-left:2%;margin-top:4%;height: 174px;border-radius:4px;}
+    </style>
+</head>
+<body>
+<div style="width:100%;">
+    <ul>
+        <li class="base" onclick="javascrtpt:window.location.href='https://mp.weixin.qq.com/s?__biz=Mzg2MjE2MDA1NA==&mid=100000146&idx=1&sn=a263842345bddb586fbf69ddd26dd9a4&chksm=4e0d544b797add5d04d1ae35979530229ba33e990e8a3693e9739ba1456b29cf32a675fe1497#rd'">
+            <img height="174" src="/index/images/zskt/wz_index.png"/>
+        </li>
+        <li class="li" onclick="javascrtpt:window.location.href='https://mp.weixin.qq.com/s?__biz=Mzg2MjE2MDA1NA==&mid=100000151&idx=1&sn=9bae81fd1e5de075eac0738a8269e5a7&chksm=4e0d544e797add58f8a1e8dcfaccdaa16c28567c4f25ef9b773a924f5c73fde1bf05e490323d#rd'">
+            <img height="174" src="/index/images/zskt/yz_index.png"/>
+        </li>
+        <li class="li" onclick="javascrtpt:window.location.href='https://mp.weixin.qq.com/s?__biz=Mzg2MjE2MDA1NA==&mid=100000157&idx=1&sn=170e81db438ed0e7ea88e434c901682c&chksm=4e0d5444797add52c03e443fb427246361a3e4dfb4e35e8ee090c197deb503a5f57d1a5d5cf3#rd'">
+            <img height="174" src="/index/images/zskt/b_index.png"/>
+        </li>
+    </ul>
+
+</div>
+<div style="float:left;width:100%;height: 60px;"></div>
+<!--bottom bar-->
+<nav class="mui-bar mui-bar-tab" style="background-color: #fff;">
+    <a class="mui-tab-item" href="/index/index/famousDoctor" onclick="javascrtpt:window.location.href='/index/index/famousDoctor'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/my_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="margin-left:2%;color: #2C2C2C;">名医讲糖</span>
+    </a>
+    <a class="mui-tab-item" href="/index/hdfltest" onclick="javascrtpt:window.location.href='/index/hdfltest'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/hd_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C">互动福利</span>
+    </a>
+    <a class="mui-tab-item" href="/index/index/zskt" onclick="javascrtpt:window.location.href='/index/index/zskt'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/zs_click.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #01cfcf;">注射控糖</span>
+    </a>
+</nav>
+</body>
+<script src="/index/js/mui.min.js"></script>
+<script type="text/javascript">
+    //解决mui a标签无法跳转问题
+    mui('body').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+    /*
+    iphone bottom适配
+     */
+    // x xs
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 375 && window.screen.height === 812){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xs max
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xr
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 2 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+</script>
+</html>

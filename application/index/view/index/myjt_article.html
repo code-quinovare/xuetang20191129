@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <style>
+        html,
+        body {
+            background-color: #fff;
+        }
+        p {
+            text-indent: 22px;
+            color: black;
+        }
+        span.mui-icon {
+            font-size: 14px;
+            color: #007aff;
+            margin-left: -15px;
+            padding-right: 10px;
+        }
+        .mui-off-canvas-right {
+            color: #fff;
+        }
+        .title {
+            margin: 35px 15px 10px;
+        }
+        .title+.content {
+            margin: 10px 15px 35px;
+            color: #bbb;
+            text-indent: 1em;
+            font-size: 14px;
+            line-height: 24px;
+        }
+        input {
+            color: #000;
+        }
+
+    </style>
+</head>
+<body>
+<!--侧滑菜单容器-->
+<div id="offCanvasWrapper" class="mui-off-canvas-wrap mui-draggable">
+    <!--菜单部分-->
+    <aside id="offCanvasSide" class="mui-off-canvas-right">
+        <div id="offCanvasSideScroll" class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <div class="title">侧滑导航</div>
+                <div class="content">
+                    这是可拖动式侧滑菜单示例，你可以在这里放置任何内容；关闭侧滑菜单有多种方式： 1.在手机屏幕任意位置向右拖动(drag)；2.点击本侧滑菜单页之外的任意位置; 3.点击如下红色按钮
+                    <span class="android-only">；4.Android手机按back键；5.Android手机按menu键
+							</span>。
+                    <p style="margin: 10px 15px;">
+                        <button id="offCanvasHide" type="button" class="mui-btn mui-btn-danger mui-btn-block" style="padding: 5px 20px;">关闭侧滑菜单</button>
+                    </p>
+
+                </div>
+                <div class="title" style="margin-bottom: 25px;">侧滑列表示例</div>
+                <ul class="mui-table-view mui-table-view-chevron mui-table-view-inverted">
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 1
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 2
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 3
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 4
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 5
+                        </a>
+                    </li>
+                    <li class="mui-table-view-cell">
+                        <a class="mui-navigate-right">
+                            Item 6
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </aside>
+    <div class="mui-inner-wrap">
+        <header class="mui-bar mui-bar-nav">
+            <a id="offCanvasBtn" href="#offCanvasSide" class="mui-icon mui-action-menu mui-icon-bars mui-pull-right"></a>
+            <h1 class="mui-title">导航bar</h1>
+        </header>
+        <div id="offCanvasContentScroll" class="mui-content mui-scroll-wrapper" style="background-color: #fff;-webkit-user-select: text;">
+            <div class="mui-scroll">
+                <div class="mui-content-padded" style="color: black;">
+                    <div><h4>we all scream for ice-cream!</h4></div>
+                    <div style="margin-top: 4%;"><a href="">快舒尔医疗</a><span style="color: #9d9d9d;margin-left: 4%;">今天</span></div>
+                    <div class="contents" style="margin-top: 4%;">
+                        <section><section><section><section><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">
+                            <strong style="box-sizing: border-box;">I scream,you scream,<span style="letter-spacing: 0px; box-sizing: border-box;">
+                                we all scream for ice-cream!</span></strong></p></section><section><section><section>
+                            <p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p>
+                        </section><section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">
+                            <strong style="box-sizing: border-box;"><span style="font-size: 35px; text-shadow: rgb(62, 62, 62) 2px 0px 2px; box-sizing: border-box;">
+                                <span style="text-decoration-line: underline; box-sizing: border-box;"></span>ice cream<span style="box-sizing: border-box;"></span>
+                            </span></strong></p><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">
+                            <strong style="box-sizing: border-box;"><span style="font-size: 22px; text-shadow: rgb(62, 62, 62) 2px 0px 2px; box-sizing: border-box;">
+                                冰淇淋</span></strong></p></section></section><section>
+                            <p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p>
+                        </section></section></section></section></section><section>
+                            <p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section>
+                            <section><section><section><section><section>
+                                <p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">
+                                    冰淇淋是用水、牛奶、糖等为主要原料，加入适量食品添加剂，经混合、灭菌、均质、老化、凝冻、硬化等工艺制成的体积膨胀的冷冻饮品。</p>
+                            </section></section></section></section></section><section>
+                                <p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p>
+                            </section><section><section><img class="raw-image" src="/ueditor/php/upload/image/20190717/1563328915622497.png"/>
+                            </section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section>
+                            <section><section><section><section>
+                                <p style="text-align: right; white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">冰淇淋的发展</p>
+                            </section></section><section><section><section><section></section></section></section></section><section><section>
+                                <table class="table-box" width="100%"><tbody style="box-sizing: border-box;">
+                                <tr style="box-sizing: border-box;" class="firstRow"><td colspan="2" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="45.0000%"><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/2785807ff93fe02b1b44158281ce4528-sz_357024.jpg?x-oss-process=image/resize,w_1080/auto-orient,1"/></section></section></td><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="55.0000%"><section><p style="white-space: normal; box-sizing: border-box;">冰淇淋源于中国。<span style="letter-spacing: 0px; box-sizing: border-box;">元朝时期一位精明的食品店商人突发奇想，他尝试着在冰中添加一些蜜糖、牛奶和珍珠粉，结果，制成了世界上最早的冰淇淋。</span></p></section></td></tr></tbody></table></section></section><section><section><section><section><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/c67ccf3c7c8c8f1812e2e0c7b229b6d7-sz_207853.jpg?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_0,y_0,w_1080,h_722"/></section></section></section><section><section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">13世纪，意大利探险家马可·波罗回到意大利，带回了中国的冰淇淋制法。</p></section></section></section></section></section></section></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><section><section><section><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">冰淇淋的分类</p></section></section><section><section><section><section></section></section></section></section><section><section><table class="table-box" width="100%"><tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;" class="firstRow"><td colspan="2" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="55.0000%"><section><p style="white-space: normal; box-sizing: border-box;">奶油冰淇淋:主要以&quot;奶油&quot;为原料制作的冰淇淋，口感润滑舒爽，但也同时带有奶油的高热量等危害。</p></section></td><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="45.0000%"><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/3235b1201d056f0967b9dd84639866f7-sz_213753.jpg?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_46,y_0,w_719,h_719"/></section></section></td></tr></tbody></table></section></section><section><section><section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><span style="letter-spacing: 0px; box-sizing: border-box;">酸奶冰淇淋:以&quot;酸奶&quot;冰淇淋粉或者浆料为原料，使用酸奶冰淇淋机制作的冰淇淋甜品。富含活性益生菌，有助提高免疫力。</span></p><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">果蔬冰淇淋:采用&quot;鲜奶液和鲜果酱&quot;结合而成的软式冰淇淋。</p><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">圣代:圣代用牛奶、糖果肉、果汁、果酱、奶油等&quot;多种主料混合&quot;做成的软式冰淇淋。有草莓、樱桃、巧克力、水蜜桃等口味。</p></section></section></section></section></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><section><section><section><p style="text-align: right; white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">冰淇淋食用禁忌</p></section></section><section><section><section><section></section></section></section></section><section><section><table class="table-box" width="100%"><tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;" class="firstRow"><td colspan="2" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="45.0000%"><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/a403f9346cb0518eaa04c7b66cf1a02a-sz_93446.jpg?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_0,y_0,w_634,h_846"/></section></section></td><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="55.0000%"><section><p style="white-space: normal; box-sizing: border-box;">冰淇淋是一种含有优质蛋白质及高糖高脂的食品，另外还含有氨基酸及钙、磷、钾、钠、氯、铁等，具有调节生理机能、保持渗透压和酸碱度的功能。</p></section></td></tr></tbody></table></section></section><section><section><section><section><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/560291718d95bcc0cccd7bbb379052a6-sz_212924.jpg?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_81,y_0,w_927,h_618"/></section></section></section><section><section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">一般奶油冰淇淋，其营养成分为牛奶的2.8~3倍，在人体内的消化率可达95%以上，高于肉类、脂肪类的消化率。</p></section></section></section></section></section></section></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><section><section><section><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">世界十大美味冰激凌</p></section></section><section><section><section><section></section></section></section></section><section><section><table class="table-box" width="100%"><tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;" class="firstRow"><td colspan="2" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="55.0000%"><section><p style="white-space: normal; box-sizing: border-box;">冰淇淋，这一世界上美味的食物，轻易地就让我们馋涎欲滴。你知道世界十大美味的冰淇淋都属于哪里吗？<br/></p></section></td><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="45.0000%"><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/c7932427a2127f98e0980790184fef54-sz_276333.jpg?x-oss-process=image/resize,w_1080/auto-orient,1/crop,x_35,y_0,w_719,h_719"/></section></section></td></tr></tbody></table></section></section><section><section><section><section><ol class=" list-paddingleft-2" style="box-sizing: border-box;"><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的HANDEL&#39;S HOMEMANDE冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的DR.BOB&#39;S HAND CRAFTED冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的RON&#39;S GOURMET冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">法国巴黎的BERTHILION冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">法国的BIM BOM冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">古巴哈瓦那维达度的COPPELIA冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的COLD STONE冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的CRESCENT RIDGE DAIRY冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">意大利罗伦萨的VIVOLI GELATO冰淇淋</p></li><li><p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;">美国的哈根达斯冰淇淋</p></li></ol></section></section></section></section></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><section><img class="raw-image" src="/ueditor/php/upload/image/20190717/1563328915622497.png"/></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section><section><section><section><section><section><section><table class="table-box" width="100%"><tbody style="box-sizing: border-box;"><tr style="box-sizing: border-box;" class="firstRow"><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="30.0000%"><section><section><img class="raw-image" src="http://img.xiumi.us/xmi/ua/2c79F/i/028f7da9a2a89437db98b3a91a1eb5c1-sz_40128.jpg?x-oss-process=style/xmorient"/></section></section></td><td colspan="1" rowspan="1" style="border-width: 0px; border-color: rgb(62, 62, 62); border-radius: 0px; box-sizing: border-box; padding: 0px;" width="70.0000%"><section><p style="box-sizing: border-box;">贴纸来自<span style="font-size: 12px; box-sizing: border-box;">pixabay</span></p><p style="box-sizing: border-box;"><span style="letter-spacing: 0px; box-sizing: border-box;">图片来自</span><span style="letter-spacing: 0px; font-size: 12px; box-sizing: border-box;">pixabay、unsplash</span></p><p style="box-sizing: border-box;">均可商用</p></section></td></tr></tbody></table></section></section></section></section></section></section><section><p style="white-space: normal; margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box;"><br/></p></section></section><p><br/></p>
+                    </div>
+                    <div class="pl">
+                        <span style="display:inline-block;float:left;margin-top:2%;margin-left: 4%;">精选留言</span>
+                        <span style="display:inline-block;float:right;margin-top:2%;margin-right: 4%;"><a href="">写留言</a></span>
+                        <ul id="list" class="mui-table-view" style="margin-top: 2%;font-size: 14px;">
+                            {if !empty($comments)}
+                            {foreach $comments as $value}
+                            <li class="mui-table-view-cell mui-media" v-for="item in items" style="border: none;">
+                                <a href="javascript:;" :data-guid="item.guid">
+                                    <img class="mui-media-object mui-pull-left" src="{$value.headimg}">
+                                    <div class="mui-media-body">
+                                        <div class="mui-ellipsis-1"><b>{$value.nickname}</b></div>
+                                        <div class="mui-ellipsis-2" style="float: left;">{$value.comment}</div>
+                                        <div class="mui-ellipsis-2" style="float: right;color: #979797;"><?php echo date('Y-m-d',$value['add_time']); ?></div>
+                                    </div>
+                                </a>
+                            </li>
+                            {/foreach}
+                            {/if}
+                        </ul>
+                        {if empty($comments)}
+                        <br/><br/>
+                        <div style="color: #9d9d9d;margin-left: 4%;">暂无评论</div>
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- off-canvas backdrop -->
+        <div class="mui-off-canvas-backdrop"></div>
+    </div>
+</div>
+
+<script src="/index/js/mui.min.js"></script>
+<script>
+    window.onload = function(){
+        mui('#offCanvasSideScroll').scroll();
+        mui('#offCanvasContentScroll').scroll();
+    }
+    mui.init({
+        gestureConfig: {
+            longtap: true, //默认为false
+        }
+    });
+
+    mui.init({
+        swipeBack: false,
+    });
+    mui('.mui-scroll-wrapper').scroll({
+        deceleration: 0.0006 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+    });
+    mui('.content').scroll({
+        scrollY: true
+    });
+    mui.init({
+        longtap: true, //默认为false
+    });
+
+    //侧滑容器父节点
+    var offCanvasWrapper = mui('#offCanvasWrapper');
+    //主界面容器
+    var offCanvasInner = offCanvasWrapper[0].querySelector('.mui-inner-wrap');
+    //菜单容器
+    var offCanvasSide = document.getElementById("offCanvasSide");
+    //Android暂不支持整体移动动画
+    if (!mui.os.android) {
+        document.getElementById("move-togger").classList.remove('mui-hidden');
+        var spans = document.querySelectorAll('.android-only');
+        for (var i = 0, len = spans.length; i < len; i++) {
+            spans[i].style.display = "none";
+        }
+    }
+    //移动效果是否为整体移动
+    var moveTogether = false;
+    //侧滑容器的class列表，增加.mui-slide-in即可实现菜单移动、主界面不动的效果；
+    var classList = offCanvasWrapper[0].classList;
+    //变换侧滑动画移动效果；
+    mui('.mui-input-group').on('change', 'input', function() {
+        if (this.checked) {
+            offCanvasSide.classList.remove('mui-transitioning');
+            offCanvasSide.setAttribute('style', '');
+            classList.remove('mui-slide-in');
+            classList.remove('mui-scalable');
+            switch (this.value) {
+                case 'main-move':
+                    if (moveTogether) {
+                        //仅主内容滑动时，侧滑菜单在off-canvas-wrap内，和主界面并列
+                        offCanvasWrapper[0].insertBefore(offCanvasSide, offCanvasWrapper[0].firstElementChild);
+                        moveTogether = false;
+                    }
+                    break;
+                case 'main-move-scalable':
+                    if (moveTogether) {
+                        //仅主内容滑动时，侧滑菜单在off-canvas-wrap内，和主界面并列
+                        offCanvasWrapper[0].insertBefore(offCanvasSide, offCanvasWrapper[0].firstElementChild);
+                    }
+                    classList.add('mui-scalable');
+                    break;
+                case 'menu-move':
+                    classList.add('mui-slide-in');
+                    break;
+                case 'all-move':
+                    moveTogether = true;
+                    //整体滑动时，侧滑菜单在inner-wrap内
+                    offCanvasInner.insertBefore(offCanvasSide, offCanvasInner.firstElementChild);
+                    break;
+            }
+            offCanvasWrapper.offCanvas().refresh();
+        }
+    });
+    document.getElementById('offCanvasShow').addEventListener('tap', function() {
+        offCanvasWrapper.offCanvas('show');
+    });
+    document.getElementById('offCanvasHide').addEventListener('tap', function() {
+        offCanvasWrapper.offCanvas('close');
+    });
+    //主界面和侧滑菜单界面均支持区域滚动；
+    mui('#offCanvasSideScroll').scroll();
+    mui('#offCanvasContentScroll').scroll();
+    //实现ios平台的侧滑关闭页面；
+    if (mui.os.plus && mui.os.ios) {
+        offCanvasWrapper[0].addEventListener('shown', function(e) { //菜单显示完成事件
+            plus.webview.currentWebview().setStyle({
+                'popGesture': 'none'
+            });
+        });
+        offCanvasWrapper[0].addEventListener('hidden', function(e) { //菜单关闭完成事件
+            plus.webview.currentWebview().setStyle({
+                'popGesture': 'close'
+            });
+        });
+    }
+</script>
+</body>
+
+</html>

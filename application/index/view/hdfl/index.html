@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>互动福利(正式)</title>
+    <?php
+      require_once "jssdk.php";
+      $jssdk = new JSSDK("appid","wx4551d99c128182f4");
+      $signPackage = $jssdk->GetSignPackage();
+    $data = array(
+    'appId' => $signPackage["appId"],
+    'nonceStr' => $signPackage["nonceStr"],
+    'timestamp' => $signPackage["timestamp"],
+    'signature' => $signPackage["signature"]);
+    ?>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        wx.config({
+            debug:false,
+            appId: '<?php echo $data["appId"];?>',
+            timestamp: '<?php echo $data["timestamp"];?>',
+            nonceStr: '<?php echo $data["nonceStr"];?>',
+            signature: '<?php echo $data["signature"];?>',
+            jsApiList: [
+                "hideMenuItems"
+            ]
+        });
+        wx.ready(function() {
+            wx.hideMenuItems({
+                menuList: ["menuItem:copyUrl","menuItem:editTag","menuItem:delete","menuItem:originPage","menuItem:readMode", "menuItem:openWithQQBrowser", "menuItem:openWithSafari","menuItem:share:email","menuItem:share:brand","menuItem:share:qq","menuItem:share:QZone"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮
+            });
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="float: left;">
+    <img class="comingsoon" src="/index/images/hdfl/comingsoon.png"/>
+</div>
+<div style="float:left;height: 50px;width: 100%;"></div>
+<!--bottom bar-->
+<nav class="mui-bar mui-bar-tab" style="background-color: #fff;">
+    <a class="mui-tab-item" href="/index/index/famousDoctor" onclick="javascrtpt:window.location.href='/index/index/famousDoctor'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/my_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="margin-left:2%;color: #2C2C2C;">名医讲糖</span>
+    </a>
+    <a class="mui-tab-item" href="/index/hdfl" onclick="javascrtpt:window.location.href='/index/hdfl'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/hd_click.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #01cfcf;">互动福利</span>
+    </a>
+    <a class="mui-tab-item" href="/index/index/zskt" onclick="javascrtpt:window.location.href='/index/index/zskt'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/zs_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C;">注射控糖</span>
+    </a>
+</nav>
+</body>
+<script src="/index/js/mui.min.js"></script>
+<script>
+    var winw = document.body.clientWidth; // 取窗口宽度
+    var height = document.body.clientHeight; // 取窗口宽度
+    $(".comingsoon").attr("width",winw);
+    $(".comingsoon").attr("height",height);
+    //解决mui a标签无法跳转问题
+    mui('body').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+</script>
+</html>

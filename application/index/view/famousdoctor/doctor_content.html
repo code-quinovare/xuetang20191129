@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$data_doc['name']}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <link rel="stylesheet" href="/index/swiper/dist/css/swiper.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--标准mui.css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <style>
+        body{width: 100%;background-color: #F1F1F1;}
+        .mui-media {
+            font-size: 14px;
+            width: 96%;
+        }
+        .mui-table-view .mui-media-object {
+            max-width: initial;
+            width: 96px;
+            height: 60px;
+        }
+        .meta-info {
+            position: absolute;
+            left: 115px;
+            right: 15px;
+            bottom: 8px;
+            color: #666666;
+        }
+        .mui-table-view-cell:after {            /*li边框*/
+            background-color: #989898;
+        }
+        .mui-pull-left{
+            border-radius: 4px;
+        }
+        .mui-ellipsis-2{
+            color:#444444;
+        }
+        .meta-info .author,.meta-info .time{
+            display: inline-block;
+        }
+        .meta-info .time{
+            float: right;
+        }
+        .mui-table-view:before,
+        .mui-table-view:after {
+            height: 0;
+        }
+        .mui-content>.mui-table-view:first-child {
+            margin-top: 1px;
+        }
+        .head_img{
+            width: 80px;height: 80px;
+            position:absolute;left:30px;top:20px;z-index:100;
+            float:left; border-radius: 50%;overflow: hidden;
+        }
+        .head_int{
+            position:relative;
+            width: 100%;
+            height: 80px;
+            top:60px;
+            z-index:80;
+            background-color:#F1F1F1;
+        }
+        .head_int .head_name{
+            float: left;
+            width: 100%;
+            margin-top: 60px;
+            margin-left: 4%;
+        }
+        .head_int .doctor_int{
+            float: left;
+            margin-top: 6px;
+            margin-left: 4%;
+            background-color:#F1F1F1;
+        }
+        .doctor_nav{
+            float: left;
+            width: 100%;
+            background-color:#F1F1F1;
+        }
+        .doctor_nav span{
+            margin-left: 4%;
+        }
+        .clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+        .clearfloat{zoom:1}
+    </style>
+</head>
+<body>
+<div class="head_img">
+    <img src="{$data_doc.img}" width="80" height="80"/>
+</div>
+<div class="mui-slider-item mui-slider-item-duplicate head_int clearfloat">
+    <div class="head_name"><span><b>{$data_doc.name}</b></span></div>
+    <div class="doctor_int"><p>{$data_doc.int}</p></div>
+</div>
+<div class="doctor_nav">
+    <br/><br/><br/>
+    <span>Ta的内容</span>
+</div>
+<!--列表信息流 开始-->
+<div class="list_content" style="float:left;width: 100%;">
+    <ul id="list" class="mui-table-view" style="background-color: #F1F1F1;">
+        {if !empty($data_v)}
+        {foreach $data_v as $value}
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type={$value.type}&video_id={$value.id}" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" width="90" height="70" src="{$value.img}">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">{$value.title}</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">{$value.pageviews}次观看</div>
+                </div>
+            </a>
+        </li>
+        {/foreach}
+        {/if}
+    </ul>
+</div>
+</body>

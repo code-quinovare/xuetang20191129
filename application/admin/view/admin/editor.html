@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title>完整demo</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <script type="text/javascript" src="__JS__/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="__JS__/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__JS__/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <style type="text/css">
+        div{
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span>标题</span>
+    <input type="text" name="title"/>
+</div>
+
+<div id="wordtype"><script id="editor" type="text/plain" style="width:1024px;height:500px;"></script></div>
+
+<div id="btns">
+    <div>
+        <button onclick="getAllHtml()">获得整个html的内容</button>
+
+    </div>
+
+
+</div>
+
+</body>
+<script type="text/javascript">
+
+    var ue = UE.getEditor('editor');
+
+    function getAllHtml() {
+        //alert(UE.getEditor('editor').getAllHtml())
+        //var aa = UE.getEditor('editor').getContent();
+        var aa =  document.getElementById('wordtype').innerHTML=UE.getEditor('editor').getContent();
+        $.ajax({
+            type:"post",
+            dataType:"text",
+            data:{"id":aa},
+            url:'/admin/admin/data',//目标地址
+            success:function(){
+            },
+        })
+    }
+</script>

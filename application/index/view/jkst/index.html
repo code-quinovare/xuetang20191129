@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>健康食糖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <!-- Swiper JS -->
+    <script src="/index/swiper/dist/js/swiper.min.js"></script>
+    <style type="text/css">
+        html, body {
+            width:100%;
+            margin:0 auto;
+            padding:0 auto;
+        }
+        .div1 {
+            height:auto;
+        }
+        .div2 {
+            width:100%;
+            height:40px;
+            text-align: center;
+        }
+        .div2_1{
+            position:fixed;
+            width:100%;
+            height:40px;
+            z-index:999;
+            text-align: center;
+            background-color:#f6f6f6;
+            top:0;
+            _position:absolute;
+            _bottom:auto;
+            _top:expression(eval(document.documentElement.scrollTop));
+        }
+        .type1{
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+        *html{
+            background-image:url(about:blank);
+            background-attachment:fixed;
+        }
+        .mui-media {
+            font-size: 14px;
+            width: 96%;
+        }
+        .mui-table-view .mui-media-object {
+            max-width: initial;
+            width: 90px;
+            height: 70px;
+        }
+        .meta-info {
+            position: absolute;
+            left: 115px;
+            right: 15px;
+            bottom: 8px;
+            color: #8f8f94;
+        }
+        .meta-info .author,.meta-info .time{
+            display: inline-block;
+        }
+        .meta-info .time{
+            float: right;
+        }
+        .mui-table-view:before,
+        .mui-table-view:after {
+            height: 0;
+        }
+        .mui-content>.mui-table-view:first-child {
+            margin-top: 1px;
+        }
+        .banner {
+            height: 180px;
+            overflow: hidden;
+            position: relative;
+            background-position: center;
+            background-color: #ccc;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+        .banner .title {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            width: 90%;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 21px;
+            color: white;
+            z-index: 11;
+        }
+        .swiper-slide2{display: inline;margin: 6%;line-height: 40px;}
+        .mui-pull-left{
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="mui-content">
+    <div id="slider" class="mui-slider">
+        <div class="mui-slider-group mui-slider-loop">
+            <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="/index/images/yuantiao.jpg">
+                    <p class="mui-slider-title">静静看这世界</p>
+                </a>
+            </div>
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="/index/images/shuijiao.jpg">
+                    <p class="mui-slider-title">幸福就是可以一起睡觉</p>
+                </a>
+            </div>
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="/index/images/muwu.jpg">
+                    <p class="mui-slider-title">想要一间这样的木屋，静静的喝咖啡</p>
+                </a>
+            </div>
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="/index/images/cbd.jpg">
+                    <p class="mui-slider-title">Color of SIP CBD</p>
+                </a>
+            </div>
+            <div class="mui-slider-item">
+                <a href="#">
+                    <img src="/index/images/yuantiao.jpg">
+                    <p class="mui-slider-title">静静看这世界</p>
+                </a>
+            </div>
+            <!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+            <div class="mui-slider-item mui-slider-item-duplicate">
+                <a href="#">
+                    <img src="/index/images/shuijiao.jpg">
+                    <p class="mui-slider-title">幸福就是可以一起睡觉</p>
+                </a>
+            </div>
+        </div>
+        <div class="mui-slider-indicator mui-text-right">
+            <div class="mui-indicator mui-active"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+            <div class="mui-indicator"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    window.onscroll=function(){
+        var t=document.documentElement.scrollTop||document.body.scrollTop;
+        var div2=document.getElementById("div2");
+        var p= $(".div1").offset().top;
+        if(t> 250){
+            div2.className = "div2_1";
+        }else{
+            div2.className = "div2";
+        }
+    }
+</script>
+<div class="div1">
+    <div id="div2" class="div2">
+        <!--分类-->
+        <div class="type1">
+
+            <span  class="swiper-slide2" onclick="dj()">早餐</span>
+            <span  class="swiper-slide2" onclick="dj()">早餐</span>
+            <span  class="swiper-slide2" onclick="dj()">早餐</span>
+
+        </div>
+        <!-- 滑动提示-圆点-->
+        <div class="swiper-pagination"></div>
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 3,
+                spaceBetween: 30,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+            });
+        </script>
+    </div>
+    <div class="list_content">
+        <ul id="list" class="mui-table-view">
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/muwu.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="javascript:;" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" src="/index/images/d2.jpg">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">子宫内膜问题，除了饮食禁忌，居然还有这些影响</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author">快舒尔学糖</div>
+                    </div>
+                    <div class="meta-info">
+                        <div class="author" style="float: right;margin-right: 4%;">888次浏览</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--bottom bar-->
+<nav class="mui-bar mui-bar-tab">
+    <a class="mui-tab-item" onclick="javascrtpt:window.location.href='/index/index/famousDoctor'">
+        <div class="mui-icon">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28" height="28" viewBox="0 0 51 36" enable-background="new 0 0 51 36" xml:space="preserve">  <image id="image0" width="51" height="36" x="0" y="0"
+            href="data:image/png;base64,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
+        SUVORK5CYII=" />
+        </svg>
+        </div>
+        <span class="mui-tab-label" style="margin-left:2%;color: #2C2C2C;">名医讲糖</span>
+    </a>
+    <a class="mui-tab-item" onclick="javascrtpt:window.location.href='/index/hdfl'">
+        <div class="mui-icon">
+            <svg t="1565835194663" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1676" width="24" height="24"><path d="M974.504214 206.910467l-115.683742 0c6.593162-17.189498 10.027377-35.610032 10.027377-54.178947 0-40.296775-15.765055-78.219479-44.375673-106.776885-28.572756-28.590152-66.546625-44.337811-106.933451-44.337811-80.541361 0-146.028864 61.450561-177.87313 98.055247-9.757225 11.144828-19.153222 23.181979-27.687596 35.441187-8.505721-12.192693-17.882276-24.224728-27.627221-35.420721-31.912827-36.627199-97.469915-98.075713-177.906899-98.075713-83.422991 0-151.295821 67.789942-151.295821 151.114696 0 18.545378 3.439332 36.972053 10.037611 54.178947l-115.675556 0c-26.755364 0-48.521087 21.74935-48.521087 48.476061l0 153.982c0 26.727735 21.765723 48.471968 48.521087 48.471968l2.854001 0 0 464.707904c0 55.04671 44.825928 99.834776 99.918687 99.834776l719.418027 0c55.094806 0 99.920734-44.788066 99.920734-99.834776l0-464.707904 2.883677 0c26.748201 0 48.50676-21.744233 48.50676-48.471968l0-153.982C1023.010975 228.659817 1001.252415 206.910467 974.504214 206.910467zM547.118334 275.535427l0 682.031535-70.205968 0 0-682.031535L547.118334 275.535427zM412.083871 457.780121l0 499.785817-259.802094 0c-19.354813 0-35.102473-15.709797-35.102473-35.018561l0-464.736557L412.083871 457.780121zM611.897709 271.499507l123.646088 0-0.163729 0.207731 222.818785 0 0 121.355929-346.301144 0L611.897709 271.499507zM717.538725 66.416666c47.701418 0 86.511329 38.721907 86.511329 86.314855 0 18.84009-5.976108 36.726459-17.278525 51.724035l-1.853208 2.454912-240.942561 0 4.701069-8.445346c10.664897-19.168572 24.445762-38.609343 39.879266-56.256258C645.892965 76.263941 693.978123 66.416666 717.538725 66.416666zM306.442856 66.416666c23.502273 0 71.5158 9.847276 129.018445 75.779917 15.517415 17.832134 29.29828 37.289278 39.856753 56.268538l4.696975 8.445346L239.084749 206.910467l-1.824555-2.439562c-11.325953-15.015995-17.312294-32.907481-17.312294-51.740408C219.947899 105.138572 258.749624 66.416666 306.442856 66.416666zM289.30657 271.499507l122.776278 0 0 121.154337-335.950402 0.375553-10.333346 0L65.7991 271.691889l223.666082 0L289.30657 271.499507zM871.699804 957.566962l-259.802094 0 0-499.726465 294.904567 0 0 464.707904C906.802276 941.857165 891.056664 957.566962 871.699804 957.566962z" p-id="1677" fill="#2c2c2c"></path></svg>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C">互动福利</span>
+    </a>
+    <a class="mui-tab-item" onclick="javascrtpt:window.location.href='/index/index/zskt'">
+        <div class="mui-icon">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28" height="28" viewBox="0 0 46 35" enable-background="new 0 0 46 35" xml:space="preserve">  <image id="image0" width="46" height="35" x="0" y="0"
+    href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAjCAQAAABBLvBiAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
+AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAJcEhZ
+cwAACxMAAAsTAQCanBgAAAAHdElNRQfjCA8XNTpJQzbqAAACt0lEQVRIx7XWTUgUYRzH8e9/XF9o
+EyKQLCtNqEMUYs02pRlkRZAWBdGhLr2S5KXo0AsRRIFFZCeDyEN1CUST2KWsQ5aVlbsgFRFRdDAs
+sXc00nZ3/h10NzNfdmT2Oc3zn998eHjmPzwjCvjqyQ6WoLg8RAFTISPn4Qe3ccNt0BFuLizKSRJu
+zSMUbkwSbp8lTX1LZyYBt0p1A0Ck3HX8hBGtBs6BrHcd9++kQO7nH+IzpeYkV/HlmXIKmwN1Ubml
+Gcaq0XJLTpobHeN9R3WaXA62g/rBHmVjrFL7GFUO8WV5sp9ePQbAHcKUISPl7Epg3lqvIzx8RjPk
+dOgjQOgHD5hhFv6fKsphA2B8K3CA+4rZQkdqdWwu/pE7JlKhHrpBCxPHhfMgh1t/xQqpAeC/XjdT
+dbdE5AgwCu6JXfSf8v0cvMxSH0+C1/6GWt/6Xutic/rANsXXsFmzpT4t0D/qyuO47hhStT0H/o1p
+gIOUUftPsRKoedRtdrLATA2Fx8CNvfa3eLXjydNhu+e3D0r5UNwq0GJ5GbwHtFOeMp9nY+BpgbEO
+C++jnu+6el36zf5YJVoJcgEGcF00Ep7gYdEckSa8n0pj85VT2Co93qsAKe2g25bkTxgf+E413jG9
+2/FytbkXgBa6dZX9xrxulUwQT2uSaLwdRfeBp2Zg8vSLUcBJvrIp2mI2Tghv/aqtzDYXAphrmEvz
+41exe21doeOZs9jDc8kc+ownURzEryWynhcglYrUDHsrfdQOa1Unp79n8DstzqWMzsk3xn/CAf74
+lbxTa0VWf4WmcLE54ioO6sfo28QuwsalRPKOcCMAWkWWNLR1uY7ntUiPTgWtSSzvCK/7zW3gWehh
+Yvl4K4ZzrfTx43qXzXLFmjNeLrejLjrkL9fdIW1Ba3BbpMFtnPcwuPJkjaT+n/8BOPzhhlhfFHIA
+AAAldEVYdGRhdGU6Y3JlYXRlADIwMTktMDgtMTVUMTU6NTM6NTgrMDg6MDCEtzsXAAAAJXRFWHRk
+YXRlOm1vZGlmeQAyMDE5LTA4LTE1VDE1OjUzOjU4KzA4OjAw9eqDqwAAAABJRU5ErkJggg==" />
+</svg>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C">注射控糖</span>
+    </a>
+</nav>
+</body>
+<script src="/index/js/mui.min.js"></script>
+<script>
+    var gallery = mui('.mui-slider');
+    gallery.slider({
+        interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+</script>
+</html>

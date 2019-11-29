@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>名医讲糖</title>
+    <?php
+    require_once "jssdk.php";
+    $jssdk = new JSSDK("appid","wx4551d99c128182f4");
+    $signPackage = $jssdk->GetSignPackage();
+    $data = array(
+        'appId' => $signPackage["appId"],
+        'nonceStr' => $signPackage["nonceStr"],
+        'timestamp' => $signPackage["timestamp"],
+        'signature' => $signPackage["signature"]);
+    ?>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script>
+        var url=window.location.href;
+        wx.config({
+            debug:false,
+            appId: '<?php echo $data["appId"];?>',
+            timestamp: '<?php echo $data["timestamp"];?>',
+            nonceStr: '<?php echo $data["nonceStr"];?>',
+            signature: '<?php echo $data["signature"];?>',
+            url:url,
+            jsApiList: [
+                "onMenuShareTimeline", //分享给好友
+                "onMenuShareAppMessage", //分享到朋友圈
+                "onMenuShareQQ",  //分享到QQ
+                "onMenuShareWeibo" //分享到微博
+            ]
+        });
+        wx.ready(function (){
+            var shareData = {
+                title: '快舒尔学糖',
+                desc: '专业糖尿病知识和注射控糖交流平台',
+                link: url,
+                imgUrl: 'http://xt.quinnovare.cn/index/images/logo_xt.jpg'}; //最好是300x300以上的正方形
+            wx.onMenuShareAppMessage(shareData);
+            wx.onMenuShareTimeline(shareData);
+            wx.onMenuShareQQ(shareData);
+            wx.onMenuShareWeibo(shareData);
+        });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <link rel="stylesheet" href="/index/swiper/dist/css/swiper.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--标准mui.css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <!-- Swiper JS -->
+    <script src="/index/swiper/dist/js/swiper.min.js"></script>
+    <script type="text/javascript" src="/index/js/jsscroll/flexible.js"></script>
+    <script type="text/javascript" src="/index/js/jsscroll/iscroll.js"></script>
+    <script type="text/javascript" src="/index/js/jsscroll/navbarscroll.js"></script>
+    <style type="text/css">
+        body{background-color: #F1F1F1;}
+        .mui-search .mui-placeholder {
+            pointer-events: none;
+            text-align: left;
+            line-height: 50px;
+            margin-left: 4%;
+        }
+        div{margin: 0 0;}
+        #list {
+            /*避免导航边框和列表背景边框重叠，看起来像两条边框似得；*/
+            margin-top: -1px;
+        }
+        .div1 {
+            height:auto;
+        }
+        .div2 {
+            position: relative;
+            height: 90px;
+            width: 100%;
+            z-index: 999;
+        }
+        .div2_1{
+            position:fixed;
+            width:100%;
+            height:94px;
+            background-color: #f1f1f1;
+            margin: 0 auto;
+            text-align: center;
+            box-shadow: 2px 2px 6px darkgrey;
+            z-index:999;
+            top:0;
+            overflow: hidden;
+            *zoom:1;
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
+        }
+        .mui-table-view .mui-media-object {
+            max-width: initial;
+            width: 90px;
+            height: 70px;
+        }
+        .meta-info {
+            position: absolute;
+            right: 0;
+            bottom: 8px;
+            color: #666666;
+        }
+        .mui-ellipsis-2{
+            color:#444444;
+        }
+        .meta-info .author,.meta-info .time{
+            display: inline-block;
+        }
+        .meta-info .time{
+            float: right;
+        }
+        .mui-table-view:before,
+        .mui-table-view:after {
+            height: 0;
+        }
+        .mui-content>.mui-table-view:first-child {
+            margin-top: 1px;
+        }
+        .mui-media{
+            width: 92%;
+            margin-left: 4%;
+            font-size: 14px;
+        }
+        .mui-table-view-cell>a:not(.mui-btn){
+            padding: 11px 0 11px 0;
+        }
+        .banner img {
+            width: 100%;
+            height: auto;
+        }
+        .type1{
+            width: 100%;
+            text-align: center;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            white-space: nowrap;
+            font-size: 18px;
+            color:#666666;
+        }
+        .ul_one{
+            margin: 0 auto;
+            margin-top: 2%;
+            padding: 0;
+        }
+        .ul_one li{
+            display:inline-block;
+            margin:0 16px;
+        }
+        .classify_one:after{
+            content:'';
+            display:block;
+            height: 4px;
+            background-color: #01cfcf;
+            width:40px;
+            border-radius: 6px;
+            margin: 2px auto auto auto;
+        }
+        .classify_one
+        {
+            font-weight: 800;
+            color: #333333;
+        }
+        .wrapper01 .scroller .classify_two
+        {
+            font-weight: 400;
+            color: #ffffff;
+            background-color: #01cfcf;
+        }
+        html, body {height:100%;margin: 0;background-color: #F1F1F1;}
+        html{overflow-y:scroll;}
+        .mui-pull-left{
+            border-radius: 4px;
+        }
+        .mui-table-view .mui-media-object{      /* 缩略图大小*/
+            width: 96px;
+            height:60px;
+        }
+        .mui-table-view-cell:after {            /*li边框*/
+            left: 0;
+            background-color: #989898;
+        }
+        /**/
+        html{overflow-y:scroll;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+        html *{outline:0;-webkit-text-size-adjust:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}
+        body {font: 400 14px/1.5 "微软雅黑",Helvetica,STHeiti,Droid Sans Fallback;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0}
+        input,select,textarea{font-size:100%}
+        article,aside,footer,header,nav,section,audio,canvas,video,img {display: block;}
+        table{border-collapse:collapse;border-spacing:0}
+        fieldset,img{border:0}
+        abbr,acronym{border:0;font-variant:normal}
+        del{text-decoration:line-through}
+        address,caption,cite,code,dfn,em,th,var{font-style:normal;font-weight:normal}
+        ol,ul{list-style:none}
+        caption,th{text-align:left}
+        h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}
+        q:before,q:after{content:''}
+        button{outline:0;border:none;}
+        a:hover{text-decoration:none}
+        ins,a{text-decoration:none}
+        textarea {resize: none;}
+        iframe,img {border:0;}
+        img{display:block;width:100%;}
+        ul,ol {list-style:none;}
+        input,select,textarea {outline: 0;-webkit-user-modify: read-write-plaintext-only;}
+        input {-webkit-appearance: none;}
+        .pr{position:relative;}
+        .abs{position: absolute}
+        .fl{float:left;display:inline-block;}
+        .fr{float:right;display:inline-block;}
+        .clearfix:after{content:".";display:block;height:0;clear: both;visibility:hidden;}
+        .clearfix{*zoom:1;}
+        .wrap{min-width: 320px;max-width:768px;margin:0 auto;overflow:hidden;position:relative;}
+        .wrapper01 {position:relative;height: 0.8rem;width: 92%;overflow: hidden;margin-top:4%;transform: translate(4%)translateZ(0);}
+        .wrapper01 .scroller {position:absolute;}
+        .wrapper01 .scroller li {
+            display: inline-block;
+            float: left;
+            text-align: center;
+            font-size: .4rem;
+            height: 25px;
+            padding:0 10px 0 10px;line-height: 26px;border-radius: 20px;
+            border: none;background-color: #989898;
+        }
+        .wrapper01 .scroller .clearfix>li:not(:first-child) {
+            margin-left:20px;
+        }
+        .wrapper01 .scroller li a{color:#fff;display:block;margin:0 .3rem}
+        .wrapper01 .scroller li.cur a{color:#fff;}
+    </style>
+</head>
+<body>
+<!--搜索-->
+<div id="searchContainer" class="mui-input-row mui-search" style="margin: 0 auto; width: 100%;height:50px;text-align:center;background-color: #01C7A8;">
+    <a href="/index/search" style="line-height: 52px;"><input id="search" type="search" class="mui-input-clear" placeholder="" readonly="readonly" style="width:96%;height:34px;background-color: #FFF;border-radius: 0;"/></a>
+</div>
+<!--名医头像-->
+<div  onclick="javascrtpt:window.location.href='/index/famousDoctor'" style="width:96%;height: 150px;border-radius:4px;margin-top:2%;margin-left:2%;">
+    <img style="width:100%;height:100%;border-radius:4px;" src="/index/images/myjt/myjt.png"/>
+</div>
+<div style="width:96%;height: 80px;border-radius:4px;margin-top:2%;margin-left:2%;" onclick="javascrtpt:window.location.href='http://quinnovare.cn/product/tcPlayer'">
+    <img style="border-radius:4px;" height="80" src="/index/images/myjt/cytc.png"/>
+</div>
+<!--分类bar--->
+<div class="div1" style="margin-top: 2%;">
+    <div id="div2" class="div2">
+        <!--一级分类-->
+        <div class="type1">
+            <ul class="ul_one">
+                {if !empty($classify_max)}
+                {foreach $classify_max as $value}
+                <li id="{$value.id}" onclick="dj('{$value.id}')">{$value.name}</li>
+                {/foreach}
+                {/if}
+            </ul>
+        </div>
+        <div class="wrapper wrapper01" id="retr">
+            <div class="scroller">
+                <ul class="clearfix">
+                    <li onclick='btn(0)' id="min0"><a href="javascript:void(0)">全部</a></li>
+                    {if !empty($classify_min_base)}
+                    {foreach $classify_min_base as $value}
+                    <li id="min{$value.id}" onclick='btn("{$value.id}")'><a href="javascript:void(0)">{$value.name}</a></li>
+                    {/foreach}
+                    {/if}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        //isscroll
+        $('.wrapper').navbarscroll();
+        var winw = document.body.clientWidth; // 取窗口宽度
+        $("img").attr("width",winw);
+        $('.ul_one').children("li").eq(0).addClass('classify_one');
+        /*给'全部'添加样式*/
+        $('#min0').addClass('classify_two');
+        function dj(classid) {
+            class_id = '#' + classid;
+            $(class_id).siblings('li').removeClass('classify_one');
+            $(class_id).addClass('classify_one');
+            //ajax 获取二级分类
+            $.ajax({
+                'type' : 'post',
+                'url' : '/index/index/famousDoctor',
+                'data':{'classid':classid},
+                'success':function(data){
+                    //(1)将收到的Json字符串转换成数组对象
+                    var bookArray = eval(data);
+                    //(2)拼接字符串
+                    var str = '';
+                    //遍历bookArray
+                    $.each(bookArray,function(index,element){
+                        str += '<li id="'+'min'+element.id+'" onclick="btn(\''+element.id+ ','+ element.cd_id+'\')">'+'<a href="javascript:void(0)">'+element.name+'</a></li>';
+                    });
+                    //(3)将拼接好的html字符串放到指定的元素中
+                    //str_qb = "<input type='button' style=\"padding:0 18px 0 18px;height: 25px;border-radius: 20px;line-height: 24px;border: none;\" value='全部' id='min0' onclick='btn(0)' />" + str;
+                    str_qb = '<li onclick="btn(0)" id="min0">'+'<a href="javascript:void(0)">'+'全部'+'</a></li>' + str;
+                    $('.clearfix').html(str_qb).addClass('btn');
+                    $('.wrapper').navbarscroll();       //iscroll
+                    $('#min0').addClass('classify_two');
+                },
+                dateType:'text'
+            });
+            /*点击一级分类展示全部*/
+            $.ajax({
+                'type' : 'post',
+                'url' : '/index/index/famousClass',
+                'data':{'classid':classid},
+                'success':function(data_ty){
+                    if(data_ty != 'false'){
+                        var datas_ty = eval(data_ty);
+                        var tystr = '';
+                        $.each(datas_ty,function(index,element_ty){
+                            tystr += '<li class="mui-table-view-cell mui-media" v-for="item in items">';
+                            tystr += '<a href="' + '/index/index/videoUserinfo?type='+element_ty.type+'&video_id='+element_ty.id+'"'+':data-guid="item.guid">';
+                            tystr += '<img class="mui-media-object mui-pull-left" src="'+element_ty.img+'"/>';
+                            tystr += '<div class="mui-media-body">';
+                            tystr += '<div class="mui-ellipsis-2">'+element_ty.title+'</div>';
+                            tystr += '</div>';
+                            tystr += '<div class="meta-info">';
+                            tystr += '<div class="author"></div>';
+                            tystr += '</div>';
+                            tystr += '<div class="meta-info">';
+                            tystr += '<div class="pvs" style="float: right;margin-right: 4%;">'+ element_ty.pageviews+'次观看'+'</div>';
+                            tystr += '</div>';
+                            tystr += '</a>'+"</li>";
+                        });
+                        $('#list').html(tystr);
+                    }else{
+                        //返回空数据
+                        tystr = '<li></li>';
+                        $('#list').html(tystr);
+                    }
+                },
+                dateType:'text'
+            });
+            $("#tab1").addClass("type2_down");
+            $("#up").hide();
+            $("#down").show();
+        }
+        //点击二级分类按钮
+        function btn(data_id) {
+            if(data_id == 0){
+                minclass_id = '#min0';
+                //获取classID值
+                var classid =$('.classify_one').attr('id');
+                /*点击全部*/
+                $.ajax({
+                    'type' : 'post',
+                    'url' : '/index/index/famousClass',
+                    'data':{'classid':classid},
+                    'success':function(data_ty){
+                        if(data_ty != 'false'){
+                            var datas_ty = eval(data_ty);
+                            var tystr = '';
+                            $.each(datas_ty,function(index,element_ty){
+                                tystr += '<li class="mui-table-view-cell mui-media" v-for="item in items">';
+                                tystr += '<a href="' + '/index/index/videoUserinfo?type='+element_ty.type+'&video_id='+element_ty.id+'"'+':data-guid="item.guid">';
+                                tystr += '<img class="mui-media-object mui-pull-left" src="'+element_ty.img+'"/>';
+                                tystr += '<div class="mui-media-body">';
+                                tystr += '<div class="mui-ellipsis-2">'+element_ty.title+'</div>';
+                                tystr += '</div>';
+                                tystr += '<div class="meta-info">';
+                                tystr += '<div class="author"></div>';
+                                tystr += '</div>';
+                                tystr += '<div class="meta-info">' ;
+                                tystr += '<div class="pvs" style="float: right;margin-right: 4%;">'+element_ty.pageviews+ '次观看'+'</div>';
+                                tystr += '</div>';
+                                tystr += '</a>'+"</li>";
+                            });
+                            $('#list').html(tystr);
+                        }else{
+                            //返回空数据
+                            tystr = '<li></li>';
+                            $('#list').html(tystr);
+                        }
+                    },
+                    dateType:'text'
+                });
+            }else{
+                ids = data_id.split(",");
+                var max_id = ids[1];
+                var min_id = ids[0];
+                minclass_id = '#'+'min'+ min_id;
+            }
+            $(minclass_id).siblings('li').removeClass('classify_two');
+            $(minclass_id).addClass('classify_two');
+            $.ajax({
+                'type': 'post',
+                'url': '/index/index/famousClass',
+                'dataType': 'text',
+                'data': {'max_id':max_id,'min_id': min_id},
+                'success':function (data_ty) {
+                    if(data_ty != 'false'){
+                        var datas_ty = eval(data_ty);
+                        var tystr = '';
+                        $.each(datas_ty,function(index,element_ty){
+                            tystr += '<li class="mui-table-view-cell mui-media" v-for="item in items">';
+                            tystr += '<a href="' + '/index/index/videoUserinfo?type='+element_ty.type+'&video_id='+element_ty.id+'"'+':data-guid="item.guid">';
+                            tystr += '<img class="mui-media-object mui-pull-left" src="'+element_ty.img+'"/>';
+                            tystr += '<div class="mui-media-body">';
+                            tystr += '<div class="mui-ellipsis-2">'+element_ty.title+'</div>';
+                            tystr += '</div>';
+                            tystr += '<div class="meta-info">';
+                            tystr += '<div class="author"></div>';
+                            tystr += '</div>';
+                            tystr += '<div class="meta-info">' ;
+                            tystr += '<div class="pvs" style="float: right;margin-right: 4%;">'+ element_ty.pageviews+'次观看'+'</div>';
+                            tystr += '</div>';
+                            tystr += '</a>'+"</li>";
+                        });
+                        $('#list').html(tystr);
+                    }else{
+                        //返回空数据
+                        tystr = '<li></li>';
+                        $('#list').html(tystr);
+                    }
+                }
+            });
+        }
+    </script>
+    <!-- <div class="bar_bottom" style="width: 26px;height: 32px;background-color:#fff;margin:0 auto;text-align:center;right: 0;transform: translate(-50%, -50%);
+     position:absolute; bottom:-16px;">
+         <a id="down" style="display: inline-block;margin-top: 24%;">
+             <svg t="1563940409751" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8852" width="20" height="20"><path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3 0.1-12.7-6.4-12.7z" p-id="8853" fill="#8a8a8a"></path></svg>
+         </a>
+         <a id="up" style="display: none;">
+             <svg t="1563946546744" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9854" width="20" height="20"><path d="M890.5 755.3L537.9 269.2c-12.8-17.6-39-17.6-51.7 0L133.5 755.3c-3.8 5.3-0.1 12.7 6.5 12.7h75c5.1 0 9.9-2.5 12.9-6.6L512 369.8l284.1 391.6c3 4.1 7.8 6.6 12.9 6.6h75c6.5 0 10.3-7.4 6.5-12.7z" p-id="9855" fill="#8a8a8a"></path></svg>
+         </a>
+     </div>-->
+    <script>
+        $("#down").click(function(){
+            $("#tab1").removeClass("type2_down");
+            $("#down").hide();
+            $("#up").show();
+        });
+        $("#up").click(function(){
+            $("#tab1").addClass("type2_down");
+            $("#up").hide();
+            $("#down").show();
+        });
+    </script>
+</div>
+<!--列表信息流 开始-->
+<div class="list_content" id="list_c" style="margin-top: 2%;width: 100%;">
+    <ul id="list" class="mui-table-view" style="background-color: #f1f1f1;">
+        <li class="mui-table-view-cell mui-media" v-for="item in items" id="list_zw" style="display:none;height: 140px;">
+            <a href="" :data-guid="item.guid">
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=5" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/3.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">论糖友选鞋之大学问，硬道理</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">138次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=10" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/4.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">无针注射会给皮肤留创口吗？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">32次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=13" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/5.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">糖友散步是吃完就走还是等等再走呢？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">5次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=16" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/6.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">无针注射器和胰岛素你真的放对了吗？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">14次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=19" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/8.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">如何通过改变注射方式减少皮下硬结的增生？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">9次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=22" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/9.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">皮下硬结真有那么恐怖吗？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">14次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=25" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/29.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">糖尿病患者皮肤易受伤，注意这些生活小细节避免感染</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">5次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=28" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/46.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">生酮饮食不推荐，不妨试试餐盘法，简单实用易执行！</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">2次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=31" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/48.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">糖尿病分型如此多 快看看你属于哪一类吧！</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">4次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=35" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/59.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">什么样的生活方式会提高糖尿病的几率</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">0次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=38" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/60.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">糖胖患者该如何重塑健康的生活方式</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">2次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=41" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/63.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">对于糖友来说，改善生活方式究竟有多重要</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">4次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=44" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/67.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">胖友注意，能吃能喝体重却下降，当心糖尿病找上你</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">0次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=47" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/68.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">糖尿病高危人群如何预防糖尿病的发生？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">10次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=50" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/69.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">哪些因素会影响糖尿病患者发胖？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">2次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=53" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/70.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">如何根据体重指数来判断自己是否有糖尿病？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">0次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=60" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/19.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">无针注射器——信息爆炸时代必然的医疗产物</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">11次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=63" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/24.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">郭立新教授建议，糖尿病患者应用长远目光去选择胰岛素注射工具</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">0次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=66" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/26.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">适应症扩大有哪些临床意义？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">2次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=1" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/1.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">水果到底是不是糖友的甜蜜陷阱？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">26次观看</div>
+                </div>
+            </a>
+        </li>
+        <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/index/videoUserinfo?type=video&amp;video_id=2" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" src="/index/images/myjt/2.jpg">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">迈入无针注射器的时代，科技的进步带来了什么？</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"></div>
+                </div>
+                <div class="meta-info">
+                    <div class="author" style="float: right;margin-right: 4%;">10次观看</div>
+                </div>
+            </a>
+        </li>
+    </ul>
+    <!--<if condition="count($data_v) eq 5">
+        <div class="load-bar" id="loadmore" style="margin-left: 4%;">
+            <span href="javascript:;" class="user-pl-more-btn loadmore" data-type="1">正在加载...</span>
+        </div>
+    </if>-->
+    <div class="load-bar" id="tip">
+    </div>
+</div>
+<div class="zhanwei_bootom" style="height: 40px;"></div>
+<div class="zhanwei_bootom" style="height: 40px;"></div>
+<!--bottom bar-->
+<nav class="mui-bar mui-bar-tab" style="background-color: #fff;">
+    <a class="mui-tab-item" href="/index/index/famousDoctor?go=true" onclick="javascrtpt:window.location.href='/index/index/famousDoctor?go=true'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/my_click.png"/>
+        </div>
+        <span class="mui-tab-label" style="margin-left:2%;color:#01cfcf;">名医讲糖</span>
+    </a>
+    <a class="mui-tab-item" href="/index/hdfltest" onclick="javascrtpt:window.location.href='/index/hdfltest'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/hd_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C">互动福利</span>
+    </a>
+    <a class="mui-tab-item" href="/index/index/zskt" onclick="javascrtpt:window.location.href='/index/index/zskt'">
+        <div class="mui-icon">
+            <img src="/index/images/myjt/icon/zs_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C">注射控糖</span>
+    </a>
+</nav>
+<script src="/index/js/mui.min.js"></script>
+<script src="/index/js/update.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>
+<script type="text/javascript">
+    $(function(){
+//获取要定位元素距离浏览器顶部的距离
+        var navH = $(".div2").offset().top;
+//滚动条事件
+        $(window).scroll(function(){
+//获取滚动条的滑动距离
+            var scroH = $(this).scrollTop();
+//滚动条的滑动距离大于等于定位元素距离浏览器顶部的距离，就固定，反之就不固定
+            if(scroH>=navH){
+                $(".div2").css({"position":"fixed",
+                    "top":0,
+                    "background":"#F1F1F1",
+                    "background-attachment":"fixed",
+                    "-webkit-transform":"translateZ(0)",
+                    "_position":"absolute",
+                    "z-index":10000,
+                    "clear":"both",
+                    "overflow":"hidden",
+                    "_top":"expression(eval(document.documentElement.scrollTop))"
+                });
+            }else if(scroH<navH){
+                $(".div2").css({"position":"static"});
+            }
+        })
+    });
+    //解决部分安卓机型微信浏览器mui a标签无法跳转问题
+    mui('nav').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+    //Cookie
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+    //获取cookie
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+</script>
+<script type="text/javascript">
+    /*
+    iphone bottom适配
+     */
+    // x xs
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 375 && window.screen.height === 812){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xs max
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xr
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 2 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+</script>

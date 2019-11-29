@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>互动福利</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <!--App自定义的css-->
+    <link rel="stylesheet" type="text/css" href="/index/css/app.css"/>
+    <link rel="stylesheet" type="text/css" href="/index/css/icons-extra.css" />
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="float: left;">
+    <img class="comingsoon" src="/index/images/hdfl/comingsoon.png"/>
+</div>
+<div style="float:left;height: 50px;width: 100%;"></div>
+<!--bottom bar-->
+<nav class="mui-bar mui-bar-tab" style="background-color: #fff;">
+    <a class="mui-tab-item" href="/index/index/famousDoctor" onclick="javascrtpt:window.location.href='/index/index/famousDoctor'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/my_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="margin-left:2%;color: #2C2C2C;">名医讲糖</span>
+    </a>
+    <a class="mui-tab-item" href="/index/hdfltest" onclick="javascrtpt:window.location.href='/index/hdfltest'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/hd_click.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #01cfcf;">互动福利</span>
+    </a>
+    <a class="mui-tab-item" href="/index/index/zskt" onclick="javascrtpt:window.location.href='/index/index/zskt'">
+        <div class="mui-icon">
+            <img width="24" height="24" src="/index/images/myjt/icon/zs_unclick.png"/>
+        </div>
+        <span class="mui-tab-label" style="color: #2C2C2C;">注射控糖</span>
+    </a>
+</nav>
+</body>
+<script src="/index/js/mui.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
+</script>
+<script>
+    var winw = document.body.clientWidth; // 取窗口宽度
+    var height = document.body.clientHeight; // 取窗口宽度
+    $(".comingsoon").attr("width",winw);
+    $(".comingsoon").attr("height",height);
+    //解决mui a标签无法跳转问题
+    mui('body').on('tap','a',function(){
+        window.top.location.href=this.href;
+    });
+    var gallery = mui('.mui-slider');
+    gallery.slider({
+        interval:3000//自动轮播周期，若为0则不自动播放，默认为0；
+    });
+</script>
+<script type="text/javascript">
+    /*
+    iphone bottom适配
+     */
+    // x xs
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 375 && window.screen.height === 812){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xs max
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 3 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+    //xr
+    if (/iphone/gi.test(window.navigator.userAgent) && window.devicePixelRatio && window.devicePixelRatio === 2 && window.screen.width === 414 && window.screen.height === 896){
+        $(".mui-bar-tab").css("height","60px");
+        $(".mui-bar-tab .mui-tab-item").css({"vertical-align":"top"});
+    }
+</script>
+</html>

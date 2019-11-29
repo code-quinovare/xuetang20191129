@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>搜索</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css" />
+    <!-- 引入jQuery UI的js文件 -->
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js" ></script>
+    <style>
+        body{background-color: #F1F1F1;}
+        .mui-search .mui-placeholder {
+            pointer-events: none;
+            text-align: left;
+            margin-left: 2%;
+        }
+        .meta-info {
+            bottom: 8px;
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .meta-info .author,.meta-info .time{
+            display: inline-block;
+        }
+        li{
+            background-color: #F1F1F1;
+        }
+        .hot_keys{
+            float: left;
+            list-style: none;
+            margin: 4px;
+        }
+        .hot_key{
+            float: left;
+            list-style: none;
+            margin: 4px;
+            color:#ABB2B5;
+            padding: 1% 6%;
+            border: 1px solid #c0c0c0;
+        }
+        div{border-bottom: none;}
+        .mui-table-view:before{
+            background-color: transparent;
+        }
+
+    </style>
+</head>
+<body>
+<div class="mui-content">
+    <div class="mui-content-padded" style="margin: 5px;">
+        <form action="/index/search/searchKey" method="get">
+            <div class="mui-input-row mui-search" style="margin:0;width: 80%;float: left;margin-left: 2%;margin-top: 2%;">
+                <input type="search" name="keyword" class="mui-input-clear" placeholder="输入名医、标题、关键字" id="ipt" style="background-color: #fff;border-radius: 0;" />
+            </div>
+            <div class="search_bar">
+                <input type="button" value="取消"  id="quxiao" onclick="javascrtpt:window.location.href='/index/index/famousDoctor'" style="float: right;background: none;margin-top:2%;margin-right: 2%;font-size:16px;font-weight: 800;border: none;"/>
+                <input type="submit" value="搜索" style="display: none;float: right;background: none;margin-right: 2%;margin-top:2%;color: #01cfcf;font-size:16px;font-weight: 800;border: none;" id="sousuo"/>
+            </div>
+        </form>
+        {if !empty($data_his)}
+        <div class="history" style="float: left;width: 100%;margin: 0 auto;">
+            <ul class="mui-table-view" style="margin: 0 auto;display: block;width: 96%;">
+                <li class="hot_keys" style="width: 100%;color: #ABB2B5;">
+                    <span style="float: left;">历史搜索</span>
+                    <div style="float: right;margin-right: 4%;" onclick="javascrtpt:window.location.href='/index/search/cleanHistory'">
+                        <span style="float: left;">
+                            <svg t="1564566671829" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2172" width="18" height="20"><path d="M652.8 834.56c15.36 0 25.6-10.24 25.6-25.6v-307.2c0-15.36-10.24-25.6-25.6-25.6s-25.6 10.24-25.6 25.6v307.2c0 12.8 10.24 25.6 25.6 25.6z m-128 0c15.36 0 25.6-10.24 25.6-25.6v-307.2c0-15.36-10.24-25.6-25.6-25.6s-25.6 10.24-25.6 25.6v307.2c0 12.8 10.24 25.6 25.6 25.6z m281.6-614.4h-153.6v-51.2c0-28.16-23.04-51.2-51.2-51.2h-153.6c-28.16 0-51.2 23.04-51.2 51.2v51.2h-153.6c-28.16 0-51.2 23.04-51.2 51.2v51.2c0 28.16 23.04 51.2 51.2 51.2v460.8c0 56.32 46.08 102.4 102.4 102.4h358.4c56.32 0 102.4-46.08 102.4-102.4v-460.8c28.16 0 51.2-23.04 51.2-51.2v-51.2c0-28.16-23.04-51.2-51.2-51.2z m-358.4-25.6c0-15.36 10.24-25.6 25.6-25.6h102.4c15.36 0 25.6 10.24 25.6 25.6v25.6h-153.6v-25.6z m307.2 640c0 28.16-23.04 51.2-51.2 51.2h-358.4c-28.16 0-51.2-23.04-51.2-51.2v-460.8h460.8v460.8z m25.6-512h-512c-15.36 0-25.6-10.24-25.6-25.6s10.24-25.6 25.6-25.6h512c15.36 0 25.6 10.24 25.6 25.6 0 12.8-10.24 25.6-25.6 25.6z m-384 512c15.36 0 25.6-10.24 25.6-25.6v-307.2c0-15.36-10.24-25.6-25.6-25.6s-25.6 10.24-25.6 25.6v307.2c0 12.8 10.24 25.6 25.6 25.6z" p-id="2173" fill="#8a8a8a"></path></svg>
+                        </span>
+                        <span style="float:right;font-size: 14px;">清空历史</span>
+                    </div>
+                </li>
+                {foreach $data_his as $value}
+                <li class="hot_key" onclick="javascrtpt:window.location.href='/index/search/searchKey?kwid={$value.id}'">
+                    <?php if(strlen($value['keyword'])>15){
+                        echo substr($value['keyword'],0,15) . '...';
+                    } else{
+                        echo $value['keyword'];
+                    }
+                    ?>
+                </li>
+                {/foreach}
+                <li style="list-style: none;width: 100%;height: 10px;display: block;float: left;"></li>
+            </ul>
+        </div>
+        {/if}
+        <!--<div class="hot" style="float: left;width: 100%;margin: 0 auto;">
+            <ul class="mui-table-view" style="margin: 0 auto;display: block;width: 94%;">
+                <li class="hot_keys" style="width: 100%;color: #ABB2B5;">热门搜索</li>
+                <li class="hot_key" onclick="javascrtpt:window.location.href='/index/search/searchKey?keyword=硬结'">硬结</li>
+                <li class="hot_key" onclick="javascrtpt:window.location.href='/index/search/searchKey?keyword=肥胖'">肥胖</li>
+                <li class="hot_key" onclick="javascrtpt:window.location.href='/index/search/searchKey?keyword=妊娠'">妊娠</li>
+                <li class="hot_key" onclick="javascrtpt:window.location.href='/index/search/searchKey?keyword=视频'">视频</li>
+            </ul>
+        </div>-->
+       <div class="mui-content" id="bootom_ul" style="float: left;width: 100%;margin: 0 auto;margin-top: 4%;">
+            <ul class="mui-table-view" id="li_add" style="margin: 0 auto;display: block;width: 94%;border-top: none;">
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="/index/js/mui.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    $("input").on('input propertychange',function(){
+        $(".hot").hide();
+        $(".history").hide();
+        var obj = $("#ipt").val();
+        $.ajax({
+            type: 'post' ,
+            url:'/index/search/get_search' ,
+            cache: false ,
+            traditional :true,//传递数组必写
+            data: {'content':obj},
+            dataType:'json',
+            success:function(data){
+                //(1)将收到的Json字符串转换成数组对象
+                var bookArray = eval(data);
+                //(2)拼接字符串
+                var str = '';
+                //遍历bookArray
+                $.each(bookArray,function(index,element){
+                    str += '<li class="mui-table-view-cell mui-media">';
+                    str += '<a href="' + '/index/search/searchKey?keyword='+element.title+'">'+element.title+'</a>';
+                    str += '</li>';
+                });
+                //(3)将拼接好的html字符串放到指定的元素中
+                $('#li_add').html(str);
+            },
+            error:function(){
+            }
+        });
+        $.ajax({
+            type: 'post' ,
+            url:'/index/search/get_doctor' ,
+            cache: false ,
+            traditional :true,//传递数组必写
+            data: {'content':obj},
+            dataType:'json' ,
+            success:function(data_doctor){
+                var doctorArray = eval(data_doctor);
+                var str_doctor ='';
+                $.each(doctorArray,function(index,element_doc){
+                    str_doctor += '<li class="mui-table-view-cell mui-media" style="" v-for="item in items">';
+                    str_doctor += '<a href="' + '/index/FamousDoctor/doctorContent?doctor_id='+element_doc.id+'"'+':data-guid="item.guid">';
+                    str_doctor += '<img class="mui-media-object mui-pull-left" src="'+element_doc.img+'"/>';
+                    str_doctor += '<div class="mui-media-body">';
+                    str_doctor += '<div class="mui-ellipsis-2">'+element_doc.name+'</div>';
+                    str_doctor += '</div>';
+                    str_doctor += '<div class="meta-info">';
+                    str_doctor += '<div class="author" style="float: left;">'+element_doc.int.substring(0,15)+'...'+'</div>';
+                    str_doctor += '</div>';
+                    str_doctor += '</div>';
+                    str_doctor += '</a>'+"</li>";
+                });
+                //(3)将拼接好的html字符串放到指定的元素中
+                $('#li_add').append(str_doctor);
+
+            },
+            error:function(){
+            }
+        });
+    });
+</script>
+<script>
+    function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    }
+    if (typeof WeixinJSBridge == "undefined") {
+        if (document.addEventListener) {
+            document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+        } else if (document.attachEvent) {
+            document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+            document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+        }
+    } else {
+        onBridgeReady();
+    }
+</script>
+<script>
+    $('input').bind('input propertychange', function(){
+        if($(this).val() == "" || $(this).val() == null){
+            $('#sousuo').hide();
+            $('#li_add').hide();
+            $('#quxiao').show();
+        }else{
+            $('#quxiao').hide();
+            $('#sousuo').show();
+            $('#li_add').show();
+        }
+    });
+    //点击icon小图标点击事件
+    mui('input')[0].addEventListener('focus', function(){
+        mui(".mui-icon-clear")[0].addEventListener('tap',function(){
+            $('#sousuo').hide();
+            $('#li_add').hide();
+            $('#quxiao').show();
+            $(".hot").show();
+            $(".history").show();
+        });
+    });
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+    var nativeWebview, imm, InputMethodManager;
+    var initNativeObjects = function() {
+        if (mui.os.android) {
+            var main = plus.android.runtimeMainActivity();
+            var Context = plus.android.importClass("android.content.Context");
+            InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+            imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+        } else {
+            nativeWebview = plus.webview.currentWebview().nativeInstanceObject();
+        }
+    };
+    var showSoftInput = function() {
+        if (mui.os.android) {
+            imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+
+        } else {
+            nativeWebview.plusCallMethod({
+                "setKeyboardDisplayRequiresUserAction": false
+
+            });
+
+        }
+        setTimeout(function() {
+            var inputElem = document.querySelector('input');
+            inputElem.focus();
+            inputElem.parentNode.classList.add('mui-active'); //第一个是search，加上激活样式
+
+        }, 200);
+    };
+    mui.plusReady(function() {
+        initNativeObjects();
+        showSoftInput();
+
+    });
+</script>
+</body>
+</html>

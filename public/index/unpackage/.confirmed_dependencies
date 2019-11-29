@@ -1,0 +1,78 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/update.js"
+		],
+		"refer": [
+			"index-menu.html",
+			"examples/guide.html",
+			"examples/badges.html",
+			"examples/pullrefresh_with_tab.html",
+			"examples/nav.html",
+			"examples/nav_transparent_native.html",
+			"examples/offcanvas-drag-right-plus-main.html",
+			"examples/nav_transparent.html",
+			"examples/nav-nativeObj.html",
+			"examples/tabbar.html",
+			"examples/card.html",
+			"examples/tableviews.html",
+			"examples/actionsheet.html",
+			"examples/accordion.html",
+			"examples/ajax.html",
+			"examples/buttons.html",
+			"examples/buttons-with-icons.html",
+			"examples/buttons-with-badges.html",
+			"examples/buttons-with-loading.html",
+			"examples/buttons-with-block.html",
+			"examples/checkbox.html",
+			"examples/dtpicker.html",
+			"examples/dialog.html",
+			"examples/slider-native.html",
+			"examples/slider-default.html",
+			"examples/slider-with-title.html"
+		]
+	},
+	"examples/pullrefresh_with_tab.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
+		]
+	},
+	"examples/nav_transparent_native.html": {
+		"resources": [
+			"images/yuantiao.jpg",
+			"images/shuijiao.jpg"
+		]
+	},
+	"examples/offcanvas-drag-right-plus-main.html": {
+		"refer": [
+			"examples/offcanvas-drag-right-plus-menu.html"
+		]
+	},
+	"examples/tabbar.html": {
+		"resources": [
+			"css/app.css",
+			"images/60x60.gif"
+		]
+	},
+	"examples/card.html": {
+		"resources": [
+			"images/cbd.jpg",
+			"images/logo.png"
+		]
+	},
+	"examples/accordion.html": {
+		"resources": [
+			"images/muwu.jpg"
+		]
+	},
+	"examples/dtpicker.html": {
+		"resources": [
+			"js/mui.picker.min.js",
+			"css/mui.picker.min.css"
+		]
+	}
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>搜索内容</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!--标准mui.css-->
+    <link rel="stylesheet" href="/index/css/mui.min.css">
+    <script type="text/javascript" src="/index/jquery-1.10.2.min.js"></script>
+    <link href="http://code.jquery.com/ui/1.10.4/themes/ui-darkness/jquery-ui.css" />
+    <!-- 引入jQuery UI的js文件 -->
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js" ></script>
+    <style>
+        li{
+            background-color: #efeff4;
+        }
+        .meta-info {
+            position: absolute;
+            left: 70px;
+            bottom: 8px;
+            font-size: 14px;
+            color: #8f8f94;
+        }
+        .meta-infos {
+            position: absolute;
+            left: 70px;
+            right: 15px;
+            bottom: 8px;
+            color: #8f8f94;
+        }
+        .meta-infos .author,.meta-infos .time{
+            display: inline-block;
+        }
+        .meta-infos .time{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div class="mui-content">
+    <div style="margin-top: 4%;margin-left: 8%;">搜索<span>"<b>{$keyword}</b>"</span></div>
+    <div class="mui-content" style="float: left;width: 100%;margin: 0 auto;margin-top: 4%;">
+        <ul class="mui-table-view" id="li_add" style="margin: 0 auto;display: block;width: 94%;">
+            {if !empty($re_doc)}
+            {foreach $re_doc as $value}
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+            <a href="/index/FamousDoctor/doctorContent?doctor_id={$value.id}" :data-guid="item.guid">
+                <img class="mui-media-object mui-pull-left" width="90" height="70" src="{$value.img}">
+                <div class="mui-media-body">
+                    <div class="mui-ellipsis-2">&nbsp;{$value.name}</div>
+                </div>
+                <div class="meta-info">
+                    <div class="author"><?php if(strlen($value['int'])>36){
+                        echo substr($value['int'],0,36) . '...';
+                        } else{
+                        echo $value['int'];
+                        }
+                        ?></div>
+                </div>
+            </a>
+        </li>
+            {/foreach}
+            {/if}
+        </ul>
+    </div>
+    <div class="list_contents" id="list_c" style="width: 100%;margin:0 auto;float: left;">
+        <ul id="list" class="mui-table-view" style="margin: 0 auto;display: block;width: 94%;">
+            {if !empty($re_myjt)}
+            {foreach $re_myjt as $myjt}
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="/index/index/videoUserinfo?type={$myjt.type}&video_id={$myjt.id}" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" width="90" height="70" src="{$myjt.img}">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2"> <?php if(strlen($myjt['title'])>36){
+                            echo substr($myjt['title'],0,36) . '...';
+                            } else{
+                            echo $myjt['title'];
+                            }
+                            ?></div>
+                    </div><br/>
+                    <div class="meta-infos">
+                        <div class="author" style="float: right;margin-right: 4%;">{$myjt.pageviews}次观看</div>
+                    </div>
+                </a>
+            </li>
+            {/foreach}
+            {/if}
+            {if !empty($re_zskt)}
+            {foreach $re_zskt as $zskt}
+            <li class="mui-table-view-cell mui-media" v-for="item in items">
+                <a href="/index/index/zsktUserinfo?type={$zskt.type}&video_id={$zskt.id}" :data-guid="item.guid">
+                    <img class="mui-media-object mui-pull-left" width="90" height="70" src="{$zskt.img}">
+                    <div class="mui-media-body">
+                        <div class="mui-ellipsis-2">{$zskt.title}</div>
+                    </div>
+                    <div class="meta-infos">
+                        <div class="author">{$zskt.author}</div>
+                    </div>
+                    <div class="meta-infos">
+                        <div class="author" style="float: right;margin-right: 4%;">{$zskt.pageviews}次浏览</div>
+                    </div>
+                </a>
+            </li>
+            {/foreach}
+            {/if}
+        </ul>
+    </div>
+</div>
+<script src="/index/js/mui.min.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script>
+    mui.init({
+        swipeBack: true //启用右滑关闭功能
+    });
+    var nativeWebview, imm, InputMethodManager;
+    var initNativeObjects = function() {
+        if (mui.os.android) {
+            var main = plus.android.runtimeMainActivity();
+            var Context = plus.android.importClass("android.content.Context");
+            InputMethodManager = plus.android.importClass("android.view.inputmethod.InputMethodManager");
+            imm = main.getSystemService(Context.INPUT_METHOD_SERVICE);
+        } else {
+            nativeWebview = plus.webview.currentWebview().nativeInstanceObject();
+        }
+    };
+    var showSoftInput = function() {
+        if (mui.os.android) {
+            imm.toggleSoftInput(0, InputMethodManager.SHOW_FORCED);
+
+        } else {
+            nativeWebview.plusCallMethod({
+                "setKeyboardDisplayRequiresUserAction": false
+
+            });
+        }
+        setTimeout(function() {
+            var inputElem = document.querySelector('input');
+            inputElem.focus();
+            inputElem.parentNode.classList.add('mui-active'); //第一个是search，加上激活样式
+        }, 200);
+    };
+    mui.plusReady(function() {
+        initNativeObjects();
+        showSoftInput();
+    });
+</script>
+</body>
+
+</html>
